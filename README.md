@@ -1,6 +1,12 @@
 # Zink
 ZeroMQ pub-sub subscriber sink for testing and debugging purposes. Prints out full message and its parts or just a dot for each received message, depending on print verobosity. Zink can also pause or exit after certain number of received messages to test impact of ZeroMQ send and receive buffers.
 
+## Dependencies
+
+[ZeroMQ](http://zeromq.org)
+
+[zmq.hpp](https://github.com/zeromq/cppzmq)
+
 ## Configuration
 Zink is configured using environment variables.
 

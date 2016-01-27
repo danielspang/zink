@@ -22,7 +22,7 @@ class Zink
 
     zmq::context_t &context;
     zmq::socket_t socket;
-    size_t message_cnt = 0;
+    size_t message_cnt;
 
   public:
     Zink(zmq::context_t &context)
@@ -36,7 +36,8 @@ class Zink
               pause_after(-1),
               exit_after(-1),
               context(context),
-              socket(context, ZMQ_SUB)
+              socket(context, ZMQ_SUB),
+              message_cnt(0)
     {
         const char *env;
         if (env = std::getenv("ZINK_ENDPOINT"))

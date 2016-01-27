@@ -9,23 +9,34 @@ static bool IsTrue(std::string s) { return s == "true" || s == "TRUE" || s == "1
 class Zink
 {
     // Default configuration
-    std::string endpoint = "tcp://*:13415";
-    std::string public_key = "rq:rM>}U?@Lns47E1%kR.o@n%FcmmsL/@{H8]yf7";
-    std::string secret_key = "JTKVSB%%)wK0E.X)V>+}o?pNmC{O&4W4b!Ni{Lh6";
-    bool curve = false;
-    bool print_messages = true;
-    bool print_parts = false;
-    bool print_compact = false;
+    std::string endpoint;
+    std::string public_key;
+    std::string secret_key;
+    bool curve;
+    bool print_messages;
+    bool print_parts;
+    bool print_compact;
 
-    int pause_after = -1;
-    int exit_after = -1;
+    int pause_after;
+    int exit_after;
 
     zmq::context_t &context;
     zmq::socket_t socket;
     size_t message_cnt = 0;
 
   public:
-    Zink(zmq::context_t &context) : context(context), socket(context, ZMQ_SUB)
+    Zink(zmq::context_t &context)
+            : endpoint("tcp://*:13415"),
+              public_key("rq:rM>}U?@Lns47E1%kR.o@n%FcmmsL/@{H8]yf7"),
+              secret_key("JTKVSB%%)wK0E.X)V>+}o?pNmC{O&4W4b!Ni{Lh6"),
+              curve(false),
+              print_messages(true),
+              print_parts(false),
+              print_compact(false),
+              pause_after(-1),
+              exit_after(-1),
+              context(context),
+              socket(context, ZMQ_SUB)
     {
         const char *env;
         if (env = std::getenv("ZINK_ENDPOINT"))

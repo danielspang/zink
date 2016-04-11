@@ -48,7 +48,7 @@ class Zink
 
         if (env = std::getenv("ZINK_SECRET_KEY"))
         {
-            endpoint = env;
+            secret_key = env;
             curve = true;
         }
 
